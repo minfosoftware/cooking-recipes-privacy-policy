@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="gu" class="h-full bg-stone-50 scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Cooking Recipes Mobile App · શુદ્ધ ગુજરાતી રસોઈ સાથી</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans, Outfit & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+                    },
+                    colors: {
+                        spice: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                        amberbrand: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    boxShadow: {
+                        'soft-xs': '0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+                        'soft-sm': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+                        'soft-md': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'soft-xl': '0 20px 25px -5px rgba(234, 88, 12, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.03)',
+                        'glow-spice': '0 0 30px -5px rgba(249, 115, 22, 0.4)',
+                        'glow-amber': '0 0 30px -5px rgba(245, 158, 11, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-display { font-family: 'Outfit', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Smooth tab transition */
+        .tab-panel-transition {
+            transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+        }
+
+        /* Subtle glowing background pulse */
+        @keyframes pulseSlow {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.04); }
+        }
+        .animate-ambient {
+            animation: pulseSlow 9s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-stone-50 text-stone-800 selection:bg-orange-500 selection:text-white relative overflow-x-hidden antialiased">
+
+    <!-- Ambient Subtle Warm Spice Glow (Matches Cooking Recipes Theme) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[780px] h-[450px] bg-gradient-to-b from-orange-200/60 via-amber-100/40 to-transparent rounded-full blur-3xl animate-ambient"></div>
+        <div class="absolute top-1/3 -left-48 w-96 h-96 bg-orange-100/50 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 -right-48 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-10 sm:space-y-12">
+
+        <!-- Top Navigation Bar -->
+        <header class="bg-white/90 backdrop-blur-md border border-orange-100/90 rounded-2xl px-5 sm:px-7 py-3.5 shadow-soft-sm flex items-center justify-between">
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-orange-600 via-amber-500 to-orange-500 flex items-center justify-center p-1 text-white shadow-md shadow-orange-500/25 shrink-0 overflow-hidden">
+                    <img src="/images/logo.png" alt="Cooking Recipes" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-utensils text-lg\'></i>';">
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-base sm:text-lg font-black tracking-tight text-stone-900 font-display">Cooking Recipes</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-orange-100 text-orange-800 border border-orange-200 uppercase tracking-wider">v1.1.0</span>
+                    </div>
+                    <p class="text-[11px] text-stone-500 font-medium tracking-tight hidden sm:block">શુદ્ધ ગુજરાતી, કાઠિયાવાડી & ભારતીય સ્વાદિષ્ટ રસોઈ સંગ્રહ</p>
+                </div>
+            </div>
+
+            <!-- In-Page Anchor Navigation Tabs -->
+            <nav class="hidden md:flex items-center gap-1 bg-stone-100/80 p-1 rounded-xl border border-stone-200/80 text-xs font-semibold text-stone-600">
+                <a href="#download-box" class="px-3.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-white transition">APK Download</a>
+                <a href="#features-section" class="px-3.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-white transition">Features Suite</a>
+                <a href="#install-section" class="px-3.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-white transition">Installation</a>
+                <a href="#faq-section" class="px-3.5 py-1.5 rounded-lg hover:text-orange-600 hover:bg-white transition">FAQ</a>
+            </nav>
+
+            <div class="flex items-center gap-2.5">
+                <a href="/recipes" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white hover:bg-orange-50 text-stone-700 hover:text-orange-600 border border-stone-200 hover:border-orange-200 text-xs font-bold transition shadow-soft-xs">
+                    <i class="fa-solid fa-bowl-food text-orange-500"></i>
+                    <span>Web Recipes Portal</span>
+                    <i class="fa-solid fa-arrow-right text-[10px] text-stone-400"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto space-y-4 pt-2">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-orange-50 text-orange-800 border border-orange-200/80 shadow-soft-xs">
+                <i class="fa-brands fa-android text-emerald-600 text-sm"></i>
+                <span>Official Android Direct Release · Build 12 (v1.1.0 APK)</span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl font-black text-stone-900 tracking-tight leading-tight font-display">
+                સ્વાદિષ્ટ ઘરની રસોઈ હવે <span class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 bg-clip-text text-transparent">તમારા ખિસ્સામાં</span>.
+            </h1>
+            
+            <p class="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto font-normal">
+                ૧૦૦+ અસલ કાઠિયાવાડી, ગુજરાતી અને પંજાબી વાનગીઓ. સ્માર્ટ પેન્ટ્રી શેફથી ઘરમાં પડેલા શાકમાંથી રેસિપિ શોધો, અઠવાડિક થાળી પ્લાન કરો અને બોલીને સમજાવતા કુકિંગ ટાઈમર સાથે રસોઈ બનાવો!
+            </p>
+        </div>
+
+        <!-- Download & QR Code Showcase Card -->
+        <div id="download-box" class="bg-white rounded-3xl border border-orange-100/90 shadow-soft-xl p-6 sm:p-9 relative overflow-hidden">
+            <!-- Top Gradient Accent Line -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left: Action & Highlights (8 Cols) -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <div class="space-y-2">
+                        <span class="text-xs font-extrabold uppercase tracking-wider text-orange-600 flex items-center gap-2">
+                            <i class="fa-solid fa-cloud-arrow-down"></i>
+                            <span>Direct Universal Android APK</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-stone-900 font-display">Download Cooking Recipes Application</h2>
+                        <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                            કોઈપણ એન્ડ્રોઇડ સ્માર્ટફોન (Android 8.0 થી લઈને લેટેસ્ટ Android 16) પર સીધી ઇન્સ્ટોલ કરો. ૧૦૦% સેફ, ફાસ્ટ અને સંપૂર્ણ પ્રાઇવસી-ફ્રેન્ડલી.
+                        </p>
+                    </div>
+
+                    <!-- Primary Download Button, Google Play & Copy Link -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        <a href="/downloads/CookingRecipes-v1.1.0.apk" download="CookingRecipes-v1.1.0.apk" 
+                           class="flex-1 inline-flex items-center justify-center gap-3.5 px-6 py-4 rounded-2xl bg-gradient-to-r from-orange-600 via-amber-600 to-orange-600 hover:from-orange-700 hover:to-amber-700 text-white font-extrabold text-base shadow-lg shadow-orange-500/25 hover:shadow-orange-500/35 hover:-translate-y-0.5 active:translate-y-0 transition-all group">
+                            <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-white text-lg group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-android"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-xs text-orange-100 font-medium">Direct Install</div>
+                                <span class="tracking-tight font-display font-black">Download APK (53.6 MB)</span>
+                            </div>
+                            <i class="fa-solid fa-download text-sm ml-auto text-orange-100"></i>
+                        </a>
+
+                        <a href="https://play.google.com/store/apps/details?id=com.minfosoftware.cookingrecipes" target="_blank"
+                           class="inline-flex items-center justify-center gap-2.5 px-5 py-4 rounded-2xl bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold transition shadow-soft-sm hover:-translate-y-0.5">
+                            <i class="fa-brands fa-google-play text-amber-400 text-base"></i>
+                            <span>Google Play</span>
+                        </a>
+
+                        <button onclick="copyToClipboard(window.location.origin + '/downloads/CookingRecipes-v1.1.0.apk', 'btnCopyApk')" id="btnCopyApk"
+                                class="inline-flex items-center justify-center gap-2 px-4 py-4 rounded-2xl bg-stone-50 hover:bg-orange-50 border border-stone-200 hover:border-orange-200 text-stone-700 hover:text-orange-700 text-xs font-bold transition shadow-soft-xs">
+                            <i class="fa-regular fa-copy text-stone-500"></i>
+                            <span>Copy Link</span>
+                        </button>
+                    </div>
+
+                    <!-- Meta Tags / Feature Badges (Matching Project Color Scheme) -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-xs font-semibold">
+                        <div class="flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-3 py-2 rounded-xl">
+                            <i class="fa-solid fa-leaf text-emerald-600 text-sm"></i>
+                            <span>જૈન & સ્વામિનારાયણ</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-amber-50 text-amber-800 border border-amber-200/80 px-3 py-2 rounded-xl">
+                            <i class="fa-solid fa-language text-amber-600 text-sm"></i>
+                            <span>ગુજરાતી & English</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-orange-50 text-orange-800 border border-orange-200/80 px-3 py-2 rounded-xl">
+                            <i class="fa-solid fa-carrot text-orange-600 text-sm"></i>
+                            <span>Smart Pantry Chef</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-rose-50 text-rose-800 border border-rose-200/80 px-3 py-2 rounded-xl">
+                            <i class="fa-solid fa-clock text-rose-600 text-sm"></i>
+                            <span>Cooking Timers</span>
+                        </div>
+                    </div>
+
+                    <!-- Fast Specs Box -->
+                    <div class="bg-stone-50/90 rounded-2xl p-4 border border-stone-200/80 space-y-2 text-xs">
+                        <div class="flex items-center justify-between font-bold text-stone-700">
+                            <span>Package Specifications</span>
+                            <span class="text-emerald-700 font-mono flex items-center gap-1.5">
+                                <i class="fa-solid fa-shield-check"></i> Play Protect Verified
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-stone-600">
+                            <div><span class="text-stone-400">Package:</span> <span class="font-mono font-medium block truncate">com.minfosoftware.cookingrecipes</span></div>
+                            <div><span class="text-stone-400">Version:</span> <span class="font-mono font-medium block">1.1.0 (Code 12)</span></div>
+                            <div><span class="text-stone-400">Target OS:</span> <span class="font-mono font-medium block">Android 16 (API 36)</span></div>
+                            <div><span class="text-stone-400">Architecture:</span> <span class="font-mono font-medium block">Universal (All CPUs)</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right: QR Code for Phone Camera (4 Cols) -->
+                <div class="lg:col-span-4 flex flex-col items-center justify-center">
+                    <div class="bg-stone-50/90 p-5 rounded-3xl border border-orange-100 shadow-soft-sm flex flex-col items-center text-center max-w-[240px] w-full relative group">
+                        <div class="relative bg-white p-3 rounded-2xl border border-stone-200 shadow-sm">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fcookingrecipes.minfosoftware.online%2Fdownloads%2FCookingRecipes-v1.1.0.apk" 
+                                 alt="Scan to Download APK"
+                                 class="w-36 h-36 rounded-lg object-contain">
+                            
+                            <div class="absolute inset-0 bg-orange-600/5 rounded-2xl pointer-events-none"></div>
+                        </div>
+                        
+                        <div class="mt-3.5 space-y-1">
+                            <div class="text-xs font-extrabold text-stone-900 font-display flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-qrcode text-orange-600"></i>
+                                <span>Scan With Phone</span>
+                            </div>
+                            <p class="text-[10px] text-stone-500 leading-tight">
+                                તમારા મોબાઈલ કેમેરાથી સ્કેન કરી સીધી APK ડાઉનલોડ કરો
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Features Showcase Suite (Interactive Tabs) -->
+        <div id="features-section" class="space-y-6">
+            
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-orange-100 text-orange-800 border border-orange-200">
+                        Smart Culinary System
+                    </span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight font-display">
+                    એપના ખાસ ફીચર્સ & સ્માર્ટ રસોઈ સાધનો
+                </h3>
+                <p class="text-xs sm:text-sm text-stone-500">
+                    નીચેના ટેબ્સ પર ક્લિક કરીને જુઓ કે Cooking Recipes એપ તમારા રોજિંદા રસોઈના અનુભવને કેવી રીતે એકદમ સરળ અને સ્વાદિષ્ટ બનાવે છે:
+                </p>
+            </div>
+
+            <!-- Feature Tabs Pill Navigation -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2.5 p-1.5 bg-stone-200/70 rounded-2xl border border-stone-200/90 shadow-inner">
+                <button onclick="switchFeatureTab('recipes')" id="tab-btn-recipes" 
+                        class="feature-tab-btn active px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-sm shadow-orange-500/25">
+                    <i class="fa-solid fa-bowl-hot"></i>
+                    <span>૧૦૦+ વાનગીઓ</span>
+                </button>
+                <button onclick="switchFeatureTab('pantry')" id="tab-btn-pantry" 
+                        class="feature-tab-btn px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/80">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span>Smart Pantry</span>
+                </button>
+                <button onclick="switchFeatureTab('planner')" id="tab-btn-planner" 
+                        class="feature-tab-btn px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/80">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Meal Planner</span>
+                </button>
+                <button onclick="switchFeatureTab('timer')" id="tab-btn-timer" 
+                        class="feature-tab-btn px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/80">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <span>કુકિંગ ટાઈમર & સ્કેલર</span>
+                </button>
+            </div>
+
+            <!-- TAB 1 CONTENT: 100+ Authentic Recipes -->
+            <div id="tab-panel-recipes" class="feature-tab-panel tab-panel-transition bg-white rounded-3xl border border-orange-100 shadow-soft-xl p-6 sm:p-9 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-amber-500"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-orange-50 text-orange-800 border border-orange-200">
+                                <i class="fa-solid fa-fire-burner"></i>
+                                <span>Authentic Indian & Regional Cuisine</span>
+                            </span>
+                            <h4 class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight font-display">
+                                કાઠિયાવાડી, ગુજરાતી, પંજાબી, ફરસાણ અને મીઠાઈનો ખજાનો
+                            </h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                                અસલ સુરતી ઊંધિયું, સેવ ટામેટાંનું શાક, રિંગણાનો ઓળો, દાળ ઢોકળી, હાંડવો, પનીર બટર મસાલા અને મોહનથાળ જેવી પરંપરાગત વાનગીઓનું સંપૂર્ણ સ્ટેપ-બાય-સ્ટેપ માર્ગદર્શન.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs">
+                                    <i class="fa-solid fa-leaf"></i>
+                                    <span>જૈન & સ્વામિનારાયણ ફિલ્ટર</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    નો-ડુંગળી, નો-લસણ અને ફરાળી વાનગીઓ ફક્ત ૧ ક્લિકમાં અલગ તારવો.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-orange-600 font-bold text-xs">
+                                    <i class="fa-solid fa-language"></i>
+                                    <span>૧૦૦% શુદ્ધ ગુજરાતી ભાષા</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    દરેક સ્ટેપ સરળ ગુજરાતીમાં સમજાવેલું છે જેથી નવા શીખનારા પણ આસાનીથી બનાવી શકે.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-amber-600 font-bold text-xs">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span>ઓફલાઇન ફેવરિટ્સ</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    ગમતી રેસિપિ સેવ કરી રાખો અને ઇન્ટરનેટ વગર ગમે ત્યારે રસોડામાં જુઓ.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                                    <i class="fa-solid fa-share-nodes"></i>
+                                    <span>WhatsApp ૧-ક્લિક શેરિંગ</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    કોઈપણ રેસિપિ સંપૂર્ણ સામગ્રી સાથે સીધી ફેમિલી ગ્રુપ્સમાં મોકલો.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2 border-t border-stone-100 text-xs font-semibold text-stone-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-emerald-600"></i> વાનગીઓ: <strong>૧૦૦+ વિગતવાર રેસિપિ</strong></span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-wifi text-amber-600"></i> મોડ: <strong>ઓફલાઇન સપોર્ટેડ</strong></span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-badge-check text-orange-600"></i> માધ્યમ: <strong>ફોટા સાથે સ્ટેપ્સ</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="bg-stone-900 p-2.5 rounded-[2.5rem] shadow-2xl border-4 border-stone-800 max-w-[270px]">
+                            <img src="/images/screenshots/screenshot_1_home.png" alt="Home Screen" class="rounded-[2rem] w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2 CONTENT: Smart Pantry Chef -->
+            <div id="tab-panel-pantry" class="feature-tab-panel tab-panel-transition hidden bg-white rounded-3xl border border-orange-100 shadow-soft-xl p-6 sm:p-9 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-amber-500"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Zero Food Waste Kitchen Matcher</span>
+                            </span>
+                            <h4 class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight font-display">
+                                સ્માર્ટ પેન્ટ્રી શેફ: ફ્રિજમાં પડેલા શાકમાંથી વાનગી શોધો
+                            </h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                                રસોડામાં આજે શું બનાવવું એ નથી સમજાતું? માત્ર બટાકા, ટામેટાં કે વટાણા પડ્યા છે? સ્માર્ટ પેન્ટ્રીમાં તે સામગ્રી ટીક કરો અને એપ તરત જ જણાવશે કે આજે કઈ મજેદાર વાનગી બનાવી શકાય છે!
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs">
+                                    <i class="fa-solid fa-percent"></i>
+                                    <span>સ્માર્ટ મેચિંગ ટકાવારી</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    તમારી પાસે ઉપલબ્ધ શાકભાજી મુજબ ૧૦૦%, ૭૦% કે ૫૦% મેચિંગ વાનગીઓ ફિલ્ટર થાય છે.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-orange-600 font-bold text-xs">
+                                    <i class="fa-solid fa-recycle"></i>
+                                    <span>શાકભાજીનો બગાડ અટકે</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    વધેલા શાકભાજી કે દાળનો સદુપયોગ કરી નવી ચટાકેદાર વાનગી બનાવી શકાય.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2 border-t border-stone-100 text-xs font-semibold text-stone-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-600"></i> શોધવાનો સમય: <strong>૧ સેકન્ડ</strong></span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-kitchen-set text-emerald-600"></i> સામગ્રી લિસ્ટ: <strong>૪૦+ કિચન આઇટમ્સ</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="bg-stone-900 p-2.5 rounded-[2.5rem] shadow-2xl border-4 border-stone-800 max-w-[270px]">
+                            <img src="/images/screenshots/screenshot_7_pantry_chef.png" alt="Smart Pantry Chef" class="rounded-[2rem] w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3 CONTENT: Weekly Meal Planner -->
+            <div id="tab-panel-planner" class="feature-tab-panel tab-panel-transition hidden bg-white rounded-3xl border border-orange-100 shadow-soft-xl p-6 sm:p-9 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-rose-500"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>Weekly Meal Management</span>
+                            </span>
+                            <h4 class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight font-display">
+                                અઠવાડિક થાળી પ્લાનર & સ્માર્ટ ગ્રોસરી લિસ્ટ
+                            </h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                                સોમવારથી રવિવાર સુધી સવારના નાસ્તા, બપોરના ભોજન અને સાંજની રસોઈનું અગાઉથી આયોજન કરો. કાઠિયાવાડી થાળી, ગુજરાતી થાળી કે હેલ્ધી ડાયેટના પ્રી-સેટ્સ ૧ ટૅપમાં ઉપલબ્ધ.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-amber-700 font-bold text-xs">
+                                    <i class="fa-solid fa-cart-flatbed"></i>
+                                    <span>આપોઆપ ગ્રોસરી લિસ્ટ</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    વાનગી માટે ખૂટતી સામગ્રી સીધી કરીયાણા લિસ્ટમાં ઉમેરો અને બજારમાં ચેકમાર્ક કરો.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                                    <i class="fa-solid fa-utensils"></i>
+                                    <span>સંપૂર્ણ પારિવારિક થાળી</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    શાક, રોટલી/રોટલા, દાળ-ભાત, કચુંબર અને મિઠાઈનું સંતુલિત આયોજન.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2 border-t border-stone-100 text-xs font-semibold text-stone-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-check-double text-emerald-600"></i> દિવસો: <strong>સોમ થી રવિ સંપૂર્ણ મેનૂ</strong></span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check text-orange-600"></i> શોપિંગ: <strong>ઓર્ગેનાઇઝ્ડ ચેકબોક્સ</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="bg-stone-900 p-2.5 rounded-[2.5rem] shadow-2xl border-4 border-stone-800 max-w-[270px]">
+                            <img src="/images/screenshots/screenshot_5_meal_planner.png" alt="Meal Planner Screen" class="rounded-[2rem] w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4 CONTENT: Cooking Mode & Portions -->
+            <div id="tab-panel-timer" class="feature-tab-panel tab-panel-transition hidden bg-white rounded-3xl border border-orange-100 shadow-soft-xl p-6 sm:p-9 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 to-orange-500"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-2">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-rose-50 text-rose-800 border border-rose-200">
+                                <i class="fa-solid fa-kitchen-set"></i>
+                                <span>Interactive Smart Chef Tools</span>
+                            </span>
+                            <h4 class="text-xl sm:text-2xl font-black text-stone-900 tracking-tight font-display">
+                                સર્વિંગ્સ સ્કેલર & બોલતું ઇન્ટરેક્ટિવ કુકિંગ ટાઈમર
+                            </h4>
+                            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                                ૨ લોકો માટે બનાવવું હોય કે ૮ મહેમાન આવ્યા હોય, માણસો વધારતાં જ સામગ્રીનું માપ આપોઆપ બદલાઈ જાય છે! રસોઈ કરતી વખતે મોબાઈલને અડક્યા વગર બોલીને સ્ટેપ્સ સાંભળો અને શાક બળે નહીં તે માટે ટાઈમર સેટ કરો.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-rose-600 font-bold text-xs">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span>ડાયનેમિક સર્વિંગ્સ સ્કેલર</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    માત્ર '+' દબાવો એટલે તેલ, મસાલા અને શાકભાજીનું પ્રમાણ ચોક્કસ ગણતરી સાથે બદલાઈ જશે.
+                                </p>
+                            </div>
+                            <div class="bg-stone-50 p-3.5 rounded-xl border border-stone-200/80 space-y-1.5">
+                                <div class="flex items-center gap-2 text-orange-600 font-bold text-xs">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span>વોઇસ સ્ટેપ રીડર</span>
+                                </div>
+                                <p class="text-[11px] text-stone-500 leading-normal">
+                                    હાથ લોટવાળા હોય તો પણ એપ બોલીને આગળનો સ્ટેપ જણાવશે.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2 border-t border-stone-100 text-xs font-semibold text-stone-600">
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-sliders text-rose-600"></i> સ્કેલિંગ: <strong>૧ થી ૧૨ સર્વિંગ્સ</strong></span>
+                            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bell text-amber-600"></i> અલાર્મ: <strong>ઓટોમેટિક કાઉન્ટડાઉન</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="bg-stone-900 p-2.5 rounded-[2.5rem] shadow-2xl border-4 border-stone-800 max-w-[270px]">
+                            <img src="/images/screenshots/screenshot_3_portion_scaler.png" alt="Portion Scaler & Timer" class="rounded-[2rem] w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Access Modes: Guest vs Google Sign-In -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 sm:p-7 rounded-3xl border border-stone-200/90 shadow-soft-sm space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-solid fa-user-ninja"></i>
+                </div>
+                <h4 class="text-lg font-bold text-stone-900 font-display">૧૦૦% ગેસ્ટ મોડ (ઝીરો રજીસ્ટ્રેશન)</h4>
+                <p class="text-xs text-stone-600 leading-relaxed">
+                    કોઈપણ પ્રકારના ફોન નંબર કે ઈમેલ આપ્યા વગર સીધી એપ ખોલો. તમામ ડેટા તમારા પોતાના ફોનમાં જ સુરક્ષિત રહે છે. ૧૦૦% ઓફલાઇન સપોર્ટ.
+                </p>
+                <div class="text-[11px] font-bold text-emerald-700 flex items-center gap-1.5 pt-1">
+                    <i class="fa-solid fa-circle-check"></i> તુરંત ઉપયોગ કરી શકાય છે
+                </div>
+            </div>
+
+            <div class="bg-white p-6 sm:p-7 rounded-3xl border border-stone-200/90 shadow-soft-sm space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg">
+                    <i class="fa-brands fa-google"></i>
+                </div>
+                <h4 class="text-lg font-bold text-stone-900 font-display">ગુગલ સાઇન-ઇન (ઓપ્શનલ સિંક)</h4>
+                <p class="text-xs text-stone-600 leading-relaxed">
+                    જો તમે તમારા મનપસંદ વાનગીઓના લિસ્ટ અને મીલ પ્લાનને અન્ય ફોન કે પરિવાર સાથે સાચવી રાખવા માંગતા હોવ તો ૧-ટૅપ Google Sign-In કરી શકો છો.
+                </p>
+                <div class="text-[11px] font-bold text-blue-700 flex items-center gap-1.5 pt-1">
+                    <i class="fa-solid fa-rotate"></i> તમામ ડિવાઇસમાં ઓટોમેટિક સિંક
+                </div>
+            </div>
+        </div>
+
+        <!-- Step-by-Step Installation Guide -->
+        <div id="install-section" class="bg-white rounded-3xl border border-orange-100 shadow-soft-xl p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider bg-orange-100 text-orange-800 border border-orange-200">
+                    Quick Setup
+                </span>
+                <span class="text-xs text-stone-400">· ૩ સરળ સ્ટેપ્સ</span>
+            </div>
+            
+            <h3 class="text-xl sm:text-2xl font-black text-stone-900 font-display">
+                ફોનમાં એપ કેવી રીતે ઇન્સ્ટોલ કરવી?
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <div class="bg-stone-50/80 p-5 rounded-2xl border border-stone-200/80 space-y-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 font-black text-sm flex items-center justify-center font-display">૧</div>
+                    <div class="font-bold text-stone-900 text-sm">Download APK</div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        ઉપર આપેલા <strong>"Download APK"</strong> બટન પર ક્લિક કરો અથવા QR કોડ સ્કેન કરો. જો બ્રાઉઝર <em>"File might be harmful"</em> પૂછે તો <strong>"Download anyway"</strong> દબાવો.
+                    </p>
+                </div>
+
+                <div class="bg-stone-50/80 p-5 rounded-2xl border border-stone-200/80 space-y-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 font-black text-sm flex items-center justify-center font-display">૨</div>
+                    <div class="font-bold text-stone-900 text-sm">Allow Installation</div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        ડાઉનલોડ થયેલી ફાઇલ પર ક્લિક કરી <strong>Install</strong> દબાવો. જો ફોનમાં પૂછવામાં આવે તો <em>"Allow from this source"</em> ચાલુ કરો.
+                    </p>
+                </div>
+
+                <div class="bg-stone-50/80 p-5 rounded-2xl border border-stone-200/80 space-y-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-black text-sm flex items-center justify-center font-display">૩</div>
+                    <div class="font-bold text-stone-900 text-sm">ખોલો અને વાનગીઓ માણો!</div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        એપ ઓપન કરો, ભાષામાં <strong>ગુજરાતી</strong> સિલેક્ટ કરો અને ઘરમાં જ બનાવો હોટલ અને ઢાબા જેવો સ્વાદિષ્ટ ખોરાક!
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div id="faq-section" class="bg-stone-100/70 rounded-3xl p-6 sm:p-8 space-y-4 border border-stone-200/80">
+            <h4 class="text-lg font-bold text-stone-900 font-display">વારંવાર પૂછાતા પ્રશ્નો (FAQ)</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-1.5">
+                    <div class="font-bold text-stone-800 text-sm">શું આ એપ તદ્દન ફ્રી છે?</div>
+                    <p class="text-stone-600 leading-relaxed">હા, Cooking Recipes એપ વાપરવા માટે ૧૦૦% મફત છે. કોઈ છુપા ચાર્જીસ નથી.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-1.5">
+                    <div class="font-bold text-stone-800 text-sm">શું નેટ વગર વાનગીઓ જોઈ શકાય?</div>
+                    <p class="text-stone-600 leading-relaxed">ચોક્કસ! તમે સેવ કરેલી ફેવરિટ રેસિપિ અને સ્માર્ટ પેન્ટ્રી શેફ ઑફલાઇન પણ કામ કરે છે.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-1.5">
+                    <div class="font-bold text-stone-800 text-sm">શું આ APK સુરક્ષિત છે?</div>
+                    <p class="text-stone-600 leading-relaxed">હા, આ APK MInfosoftware ની ઓફિશિયલ રિલીઝ કી વડે સાઇન થયેલી છે અને Google Play Protect ના તમામ સેફ્ટી ધોરણો પાસ કરે છે.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-stone-200 space-y-1.5">
+                    <div class="font-bold text-stone-800 text-sm">જૈન વાનગીઓ માટે કોઈ અલગ ફિલ્ટર છે?</div>
+                    <p class="text-stone-600 leading-relaxed">હા, હોમ સ્ક્રીન પર 'જૈન' અને 'સ્વામિનારાયણ' ફિલ્ટર આપેલું છે જે નો-લસણ, નો-ડુંગળી વાળી વાનગીઓ બતાવે છે.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="pt-6 border-t border-stone-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-3">
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                    <span>SSL Encrypted · Google Play Console Verified</span>
+                </span>
+                <span>·</span>
+                <a href="https://minfosoftware.github.io/cooking-recipes-privacy-policy/" target="_blank" class="hover:text-orange-600 underline">Privacy Policy</a>
+            </div>
+            <div>
+                © 2026 Cooking Recipes by MInfosoftware. All rights reserved.
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Toast Notification for Copy Feedback -->
+    <div id="copyToast" class="fixed bottom-6 right-6 z-50 bg-stone-900 border border-stone-800 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center gap-2.5 text-xs font-bold transform translate-y-20 opacity-0 transition-all duration-200 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+        <span id="toastMsg">લિંક કોપી થઈ ગઈ છે!</span>
+    </div>
+
+    <script>
+        // Copy to clipboard handler
+        function copyToClipboard(text, btnId) {
+            navigator.clipboard.writeText(text).then(function() {
+                const toast = document.getElementById('copyToast');
+                const toastMsg = document.getElementById('toastMsg');
+                toastMsg.textContent = 'APK લિંક કોપી થઈ ગઈ: ' + text;
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                
+                const btn = document.getElementById(btnId);
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-check text-emerald-500"></i><span>Copied!</span>';
+                
+                setTimeout(function() {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                    btn.innerHTML = originalHtml;
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Feature tabs switcher handler
+        function switchFeatureTab(tabKey) {
+            const tabs = ['recipes', 'pantry', 'planner', 'timer'];
+            
+            tabs.forEach(function(key) {
+                const btn = document.getElementById('tab-btn-' + key);
+                const panel = document.getElementById('tab-panel-' + key);
+                if (!btn || !panel) return;
+                
+                if (key === tabKey) {
+                    btn.className = 'feature-tab-btn active px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-sm shadow-orange-500/25';
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.className = 'feature-tab-btn px-4 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 hover:bg-white/80';
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
